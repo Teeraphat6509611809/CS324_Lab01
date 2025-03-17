@@ -43,5 +43,12 @@ int main(){
     printf("Decrypted Signature : %s\n",decrypt_signature);
     printf("Hashed cert : %s", bodycert_hash);
 
+    //free memory
     OPENSSL_free(res_string);
+    BN_CTX_free(ctx);
+    BN_free(S);
+    BN_free(e);
+    BN_free(n);
+    BN_free(result);
+    return 0;
 }
