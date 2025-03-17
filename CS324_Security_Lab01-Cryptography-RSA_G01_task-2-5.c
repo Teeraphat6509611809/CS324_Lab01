@@ -205,5 +205,11 @@ void task5(){
     BN_print_fp(stdout ,corrupt_res);
     printf("\n");
 
-
+    BN_CTX_free(ctx);
+    BN_free(S);
+    BN_free(n);
+    BN_free(e);
+    BN_free(result);
+    BN_free(corrupt_res);
+    BN_free(corrupt_S);
 }
