@@ -43,7 +43,8 @@ void stringToHex(const char *input, char *output) {
     *output = '\0';
 }
 
-int main(){
+void task2(){
+    //TASK 2
     char* plainText = "A top secret!";
     char hex_plainText[strlen(plainText)*2 + 1];
     stringToHex(plainText,hex_plainText);
@@ -75,18 +76,6 @@ int main(){
     hexToString(check_message_string,check_s);
     printf("check decrypting message: %s\n\n",check_s);
 
-    BIGNUM* C = BN_new();
-    BIGNUM* plainText_3 = BN_new();
-    
-    printf("Task 3:\n");
-    BN_hex2bn(&C , "8C0F971DF2F3672B28811407E2DABBE1DA0FEBBBDFC7DCB67396567EA1E2493F");
-    BN_mod_exp(plainText_3 , C , d , n , ctx);
-    printBN("Decrypt Message (Hex):",plainText_3);
-    char* decrypt_hex = BN_bn2hex(plainText_3);
-    char decrypt_message[strlen(decrypt_hex) + 1];
-    hexToString(decrypt_hex,decrypt_message);
-    printf("Decrypt message(string): %s\n",decrypt_message);
-
     OPENSSL_free(check_message_string);
     BN_CTX_free(ctx);
     BN_free(M);
@@ -95,8 +84,39 @@ int main(){
     BN_free(d);
     BN_free(encrypted_m);
     BN_free(check_message);
-    BN_free(C);
+}
 
+void task3(){
+    //TASK 3
+    char *cipher_string = "8C0F971DF2F3672B28811407E2DABBE1DA0FEBBBDFC7DCB67396567EA1E2493F";
+    BN_CTX* ctx = BN_CTX_new();
+    BIGNUM* C = BN_new();
+    BIGNUM* plainText_3 = BN_new();
+    BIGNUM* n = BN_new();
+    BIGNUM* d = BN_new();
+
+    printf("Task 3:\n");
+    BN_hex2bn(&C , cipher_string);
+    BN_mod_exp(plainText_3 , C , d , n , ctx);
+    printBN("Decrypt Message (Hex):",plainText_3);
+    char* decrypt_hex = BN_bn2hex(plainText_3);
+    char decrypt_message[strlen(decrypt_hex) + 1];
+    hexToString(decrypt_hex,decrypt_message);
+    printf("Decrypt message (string): %s\n",decrypt_message);
+
+    BN_CTX_free(ctx);
+    BN_free(C);
+    BN_free(plainText_3);
+    BN_free(n);
+    BN_free(d);
     OPENSSL_free(decrypt_hex);
 
+
+}
+
+int main(){
+    task2();
+    task3();
+
+    return 0;
 }
