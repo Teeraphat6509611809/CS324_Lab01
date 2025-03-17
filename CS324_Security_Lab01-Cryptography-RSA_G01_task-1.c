@@ -22,26 +22,28 @@ int main(){
     BIGNUM *p = BN_new();
     BIGNUM *q = BN_new();
     BIGNUM *e = BN_new();
-    BIGNUM *n = BN_new();
     BIGNUM *phi_n = BN_new();
     BIGNUM *one = BN_new();
-    BIGNUM *result = BN_new();
     BIGNUM *pkey = BN_new();
     BN_hex2bn(&one , "1");
 
     BN_hex2bn(&p , P_STR);
     BN_hex2bn(&q , Q_STR);
-    BN_mul(n , p , q , ctx);
+    BN_hex2bn(&e , E_STR);
 
     BN_sub(p ,p , one);
     BN_sub(q ,q , one);
-
-    BN_hex2bn(&e , E_STR);
     BN_mul(phi_n , p , q , ctx);
     
     BN_mod_inverse(pkey , e , phi_n , ctx);
-    printBN("PKeys :" , pkey);
+    printBN("Private Keys :" , pkey);
 
-
+    BN_CTX_free(ctx);
+    BN_free(p);
+    BN_free(q);
+    BN_free(phi_n);
+    BN_free(e);
+    BN_free(one);
+    BN_free(pkey);
 
 }
