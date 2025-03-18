@@ -41,7 +41,7 @@ int main(){
     strncpy(decrypt_signature,res_string+strlen(res_string)-64, 64);
 
     printf("Decrypted Signature : %s\n",decrypt_signature);
-    printf("Hashed cert : %s", bodycert_hash);
+    printf("Hashed cert : %s\n", bodycert_hash);
 
     //free memory
     OPENSSL_free(res_string);
