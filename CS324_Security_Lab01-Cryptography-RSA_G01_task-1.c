@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <openssl/bn.h>
 
-#define NBIT 128
 
 void printBN(char *msg, BIGNUM * a)
 {
@@ -45,5 +44,4 @@ int main(){
     BN_free(e);
     BN_free(one);
     BN_free(pkey);
-
 }
