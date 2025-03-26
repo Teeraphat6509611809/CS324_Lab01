@@ -1,2 +1,2 @@
 gcc CS324_Security_Lab01-Cryptography-RSA_G01_task-1.c -lcrypto -o CS324_Security_Lab01-Cryptography-RSA_G01_task-1.o
-./CS324_Security_Lab01-Cryptography-RSA_G01_task-1.o 
+./CS324_Security_Lab01-Cryptography-RSA_G01_task-1.o
